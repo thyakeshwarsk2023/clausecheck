@@ -1,0 +1,59 @@
+{
+    "label_names": [
+        "apr_hidden_fees",
+        "coercive_device_permissions",
+        "recovery_agent_harassment",
+        "cooling_off_cancellation",
+        "credit_card_unilateral_terms",
+        "out_of_scope"
+    ],
+    "audit_cards": {
+        "apr_hidden_fees": {
+            "regulatory_anchor": "RBI Digital Lending Guidelines (2022/2024) & Key Fact Statement (KFS) Mandate",
+            "audit_title": "Undisclosed Fees & APR Non-Transparency",
+            "audit_verdict": "HIGH RISK: Violation of Standardized KFS Requirements",
+            "explanation": "Lenders are legally mandated to present a standardized Key Fact Statement (KFS) stating the all-inclusive Annual Percentage Rate (APR) before disbursal. Deducting upfront platform fees, hidden processing charges, or third-party brokerage not disclosed in the KFS is strictly unlawful.",
+            "statutory_remedy": "Lenders cannot collect any fees not explicitly itemized in the KFS. File a formal complaint through the lender's Principal Nodal Officer and escalate to the RBI CMS portal (cms.rbi.org.in)."
+        },
+        "coercive_device_permissions": {
+            "regulatory_anchor": "RBI Digital Lending Norms \u2014 Restriction on Mobile Device Data Access",
+            "audit_title": "Unlawful Access to Personal Contacts & Phone Storage",
+            "audit_verdict": "CRITICAL VIOLATION: Prohibited Data Harvesting Vector",
+            "explanation": "RBI directives explicitly prohibit Digital Lending Apps (DLAs) and Lending Service Providers (LSPs) from accessing borrower contact books, media galleries, call records, and local file storage. Access is limited strictly to one-time camera, mic, or location purely for KYC onboarding.",
+            "statutory_remedy": "Demand immediate deletion of harvested device telemetry under the Digital Personal Data Protection (DPDP) Act and report the application to the cyber cell and RBI enforcement team."
+        },
+        "recovery_agent_harassment": {
+            "regulatory_anchor": "RBI Guidelines on Fair Practices Code & Recovery Agent Conduct",
+            "audit_title": "Unlawful Recovery Tactics & Intimidation",
+            "audit_verdict": "CRITICAL VIOLATION: Criminal Intimidation & Harassment Breach",
+            "explanation": "Recovery agents are strictly prohibited from intimidating borrowers, contacting friends or family, visiting homes without prior appointment, calling before 8:00 AM or after 7:00 PM, or threatening arrest. The regulated entity remains directly liable for vendor misconduct.",
+            "statutory_remedy": "Lodge an immediate complaint with the local police station for harassment and file an actionable grievance with the RBI Ombudsman."
+        },
+        "cooling_off_cancellation": {
+            "regulatory_anchor": "RBI Mandated Look-up / Cooling-off Period for Digital Loans",
+            "audit_title": "Denial of Statutory Loan Exit Rights",
+            "audit_verdict": "REGULATORY NON-COMPLIANCE: Cooling-Off Provision Breach",
+            "explanation": "Borrowers have an explicit statutory right to exit a digital loan without paying foreclosure penalties by repaying the principal plus proportionate APR within the look-up period (minimum 3 days for tenures \u2265 7 days; 1 day for shorter tenures).",
+            "statutory_remedy": "Submit written notice to the lender invoking the statutory look-up period under RBI Digital Lending Guidelines and tender the principal plus proportionate APR."
+        },
+        "credit_card_unilateral_terms": {
+            "regulatory_anchor": "RBI Master Direction \u2013 Credit Card and Debit Card Issuance and Conduct Directions",
+            "audit_title": "Unsolicited Upgrades, Arbitrary Limits & Revolving Traps",
+            "audit_verdict": "HIGH RISK: Violation of Credit Card Governance Norms",
+            "explanation": "Card issuers are prohibited from unilaterally enhancing credit limits, issuing unsolicited cards, or converting purchases to EMIs without explicit written consent. Requests for card closure must be completed within 7 working days, failing which the issuer incurs statutory penalty fines.",
+            "statutory_remedy": "If a card is issued without consent or closure is delayed beyond 7 days, demand compensation of \u20b9500 per day of delay directly from the bank."
+        },
+        "out_of_scope": {
+            "regulatory_anchor": "N/A \u2014 Out of Domain Intent",
+            "audit_title": "Out-of-Domain Non-Compliance Query",
+            "audit_verdict": "ABSTAIN: Query Outside Digital Lending & Consumer Debt Scope",
+            "explanation": "ClauseCheck is trained exclusively on Indian consumer credit agreements, RBI digital lending guidelines, and credit card terms. It abstains from general trivia, coding tasks, or generic conversation.",
+            "statutory_remedy": "Please submit a question concerning loan contracts, interest rate transparency, recovery agent conduct, device permissions, or credit card fees."
+        }
+    },
+    "input_dim": 384,
+    "hidden_dim1": 64,
+    "hidden_dim2": 32,
+    "num_classes": 6,
+    "embedding_model": "all-MiniLM-L6-v2"
+}

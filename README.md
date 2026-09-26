@@ -14,15 +14,22 @@ The system addresses common consumer credit violations outlined under:
 
 ---
 
-## Project Structure (Phase 1 Baseline)
+## Project Structure
 
 ```text
 clausecheck/
 ├── data/
-│   └── intents.json            # Curated 300-sample intent dataset
+│   └── intents.json              # Curated 300-sample intent dataset (50 / class)
+├── models/
+│   ├── intent_model.pth          # Serialized PyTorch classifier weights
+│   └── metadata.json             # Labels, dimensions, and regulatory audit templates
+├── reports/
+│   ├── confusion_matrix.png      # 6x6 multiclass evaluation confusion matrix
+│   └── training_curves.png       # Loss minimization & validation accuracy curves
 ├── scripts/
-│   └── step1_build_dataset.py  # Dataset compilation pipeline
-├── app.py                      # Streamlit voice & text user interface
-├── requirements.txt            # Pinned runtime dependencies
-├── .gitignore                  # Git tracking rules
-└── README.md                   # Project documentation
+│   ├── step1_build_dataset.py    # Dataset compilation pipeline
+│   └── step2_train.py            # Deep learning training & evaluation pipeline
+├── app.py                        # Streamlit voice & text user interface
+├── requirements.txt              # Pinned runtime dependencies
+├── .gitignore                    # Git tracking rules
+└── README.md                     # Project documentation
