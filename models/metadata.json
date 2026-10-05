@@ -55,5 +55,7 @@
     "hidden_dim1": 64,
     "hidden_dim2": 32,
     "num_classes": 6,
-    "embedding_model": "all-MiniLM-L6-v2"
+    "embedding_model": "all-MiniLM-L6-v2",
+    "best_epoch": 63,
+    "best_macro_f1": 0.966625
 }

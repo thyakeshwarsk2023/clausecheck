@@ -14,7 +14,6 @@ dataset = {
             "explanation": "Lenders are legally mandated to present a standardized Key Fact Statement (KFS) stating the all-inclusive Annual Percentage Rate (APR) before disbursal. Deducting upfront platform fees, hidden processing charges, or third-party brokerage not disclosed in the KFS is strictly unlawful.",
             "statutory_remedy": "Lenders cannot collect any fees not explicitly itemized in the KFS. File a formal complaint through the lender's Principal Nodal Officer and escalate to the RBI CMS portal (cms.rbi.org.in).",
             "patterns": [
-                # Conversational & Explanatory
                 "why is the app deducting processing fees from the loan upfront",
                 "what is the actual annual percentage rate on this instant loan",
                 "did the lending app hide the processing fee from me",
@@ -55,7 +54,6 @@ dataset = {
                 "where is the annual percentage rate explicitly mentioned in the contract",
                 "can an online loan app charge maintenance fees every month",
                 "they deducted stamp duty charges twice from my disbursed amount",
-                # Short Spoken Audio Fragments (Acoustic Invariance)
                 "hidden processing fee",
                 "calculate total apr on loan",
                 "disbursed amount less than approved",
@@ -70,13 +68,12 @@ dataset = {
         },
         {
             "tag": "coercive_device_permissions",
-            "regulatory_anchor": "RBI Digital Lending Norms — Restriction on Mobile Device Data Access",
+            "regulatory_anchor": "RBI Digital Lending Norms \u2014 Restriction on Mobile Device Data Access",
             "audit_title": "Unlawful Access to Personal Contacts & Phone Storage",
             "audit_verdict": "CRITICAL VIOLATION: Prohibited Data Harvesting Vector",
             "explanation": "RBI directives explicitly prohibit Digital Lending Apps (DLAs) and Lending Service Providers (LSPs) from accessing borrower contact books, media galleries, call records, and local file storage. Access is limited strictly to one-time camera, mic, or location purely for KYC onboarding.",
             "statutory_remedy": "Demand immediate deletion of harvested device telemetry under the Digital Personal Data Protection (DPDP) Act and report the application to the cyber cell and RBI enforcement team.",
             "patterns": [
-                # Conversational & Explanatory
                 "can the loan app access my phone contacts",
                 "is it legal for a lending app to ask for photo gallery access",
                 "why does this instant loan app need full call log permissions",
@@ -117,7 +114,6 @@ dataset = {
                 "does the lender have the right to look through my downloaded documents folder",
                 "can a digital lending platform demand social media login credentials",
                 "is it lawful for a loan app to access device bluetooth or wifi connections",
-                # Short Spoken Audio Fragments (Acoustic Invariance)
                 "loan app accessing contacts",
                 "phone gallery permission required",
                 "can lender read call logs",
@@ -138,7 +134,6 @@ dataset = {
             "explanation": "Recovery agents are strictly prohibited from intimidating borrowers, contacting friends or family, visiting homes without prior appointment, calling before 8:00 AM or after 7:00 PM, or threatening arrest. The regulated entity remains directly liable for vendor misconduct.",
             "statutory_remedy": "Lodge an immediate complaint with the local police station for harassment and file an actionable grievance with the RBI Ombudsman.",
             "patterns": [
-                # Conversational & Explanatory
                 "a recovery agent is calling my friends and relatives about my debt",
                 "can a debt collector call me late at night after eight pm",
                 "recovery agents are threatening me with police arrest for missed emi",
@@ -179,7 +174,6 @@ dataset = {
                 "how do i escalate persistent telephone harassment by credit card collectors",
                 "are recovery agents permitted to contact my references without my consent",
                 "can a recovery agent threaten me with an immediate travel ban",
-                # Short Spoken Audio Fragments (Acoustic Invariance)
                 "recovery agent calling family",
                 "threatened with police arrest emi",
                 "debt collector calling after eight pm",
@@ -197,10 +191,9 @@ dataset = {
             "regulatory_anchor": "RBI Mandated Look-up / Cooling-off Period for Digital Loans",
             "audit_title": "Denial of Statutory Loan Exit Rights",
             "audit_verdict": "REGULATORY NON-COMPLIANCE: Cooling-Off Provision Breach",
-            "explanation": "Borrowers have an explicit statutory right to exit a digital loan without paying foreclosure penalties by repaying the principal plus proportionate APR within the look-up period (minimum 3 days for tenures ≥ 7 days; 1 day for shorter tenures).",
+            "explanation": "Borrowers have an explicit statutory right to exit a digital loan without paying foreclosure penalties by repaying the principal plus proportionate APR within the look-up period (minimum 3 days for tenures \u2265 7 days; 1 day for shorter tenures).",
             "statutory_remedy": "Submit written notice to the lender invoking the statutory look-up period under RBI Digital Lending Guidelines and tender the principal plus proportionate APR.",
             "patterns": [
-                # Conversational & Explanatory
                 "can i cancel my digital loan after funds have been disbursed",
                 "what is the mandatory cooling off period for an instant personal loan",
                 "i took a loan by mistake can i return the funds without penalty",
@@ -241,7 +234,6 @@ dataset = {
                 "can the digital lender deduct gst from the principal refund during exit",
                 "what happens if the lender delays processing my loan cancellation request",
                 "can a borrower walk out of a digital credit facility without impact on cibil",
-                # Short Spoken Audio Fragments (Acoustic Invariance)
                 "cancel loan cooling off period",
                 "statutory look up window days",
                 "return loan amount without penalty",
@@ -256,13 +248,12 @@ dataset = {
         },
         {
             "tag": "credit_card_unilateral_terms",
-            "regulatory_anchor": "RBI Master Direction – Credit Card and Debit Card Issuance and Conduct Directions",
+            "regulatory_anchor": "RBI Master Direction \u2013 Credit Card and Debit Card Issuance and Conduct Directions",
             "audit_title": "Unsolicited Upgrades, Arbitrary Limits & Revolving Traps",
             "audit_verdict": "HIGH RISK: Violation of Credit Card Governance Norms",
             "explanation": "Card issuers are prohibited from unilaterally enhancing credit limits, issuing unsolicited cards, or converting purchases to EMIs without explicit written consent. Requests for card closure must be completed within 7 working days, failing which the issuer incurs statutory penalty fines.",
-            "statutory_remedy": "If a card is issued without consent or closure is delayed beyond 7 days, demand compensation of ₹500 per day of delay directly from the bank.",
+            "statutory_remedy": "If a card is issued without consent or closure is delayed beyond 7 days, demand compensation of \u20b9500 per day of delay directly from the bank.",
             "patterns": [
-                # Conversational & Explanatory
                 "can the bank increase my credit card limit without my explicit consent",
                 "why is the interest on credit card revolving balances so high",
                 "how is finance interest calculated if i pay only the minimum due",
@@ -303,7 +294,6 @@ dataset = {
                 "is the bank allowed to levy late payment fees if minimum due was paid",
                 "why was interest levied when i cleared my statement within the grace period",
                 "can an issuer charge annual membership fees without providing physical cards",
-                # Short Spoken Audio Fragments (Acoustic Invariance)
                 "unsolicited credit card issued",
                 "bank increased credit limit without consent",
                 "close credit card seven days rule",
@@ -318,13 +308,12 @@ dataset = {
         },
         {
             "tag": "out_of_scope",
-            "regulatory_anchor": "N/A — Out of Domain Intent",
+            "regulatory_anchor": "N/A \u2014 Out of Domain Intent",
             "audit_title": "Out-of-Domain Non-Compliance Query",
             "audit_verdict": "ABSTAIN: Query Outside Digital Lending & Consumer Debt Scope",
             "explanation": "ClauseCheck is trained exclusively on Indian consumer credit agreements, RBI digital lending guidelines, and credit card terms. It abstains from general trivia, coding tasks, or generic conversation.",
             "statutory_remedy": "Please submit a question concerning loan contracts, interest rate transparency, recovery agent conduct, device permissions, or credit card fees.",
             "patterns": [
-                # Trivia, General Science & Math
                 "what is the weather in Chennai today",
                 "tell me a funny programming joke",
                 "who is the Prime Minister of the United Kingdom",
@@ -365,7 +354,6 @@ dataset = {
                 "what is the fastest production sports car in the world",
                 "how do i fix a dripping bathroom water faucet",
                 "recommend five classic literature books to read this year",
-                # Short Spoken Fragments
                 "what time is it in london",
                 "current price of gold today",
                 "write quicksort in java",
@@ -384,18 +372,7 @@ dataset = {
 with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
     json.dump(dataset, f, indent=4)
 
-print("=" * 65)
-print(" CLAUSECHECK 300-SAMPLE DATASET GENERATION SUCCESSFUL ")
-print("=" * 65)
-total_samples = 0
+total_samples = sum(len(i["patterns"]) for i in dataset["intents"])
 for intent in dataset["intents"]:
-    count = len(intent["patterns"])
-    total_samples += count
-    print(f" • {intent['tag']:<32} : {count} patterns")
-
-print("-" * 65)
-print(f" Total Labeled Patterns          : {total_samples}")
-print(f" Train Split (80%)               : {int(total_samples * 0.8)} samples (40 / class)")
-print(f" Test Split (20%)                : {int(total_samples * 0.2)} samples (10 / class)")
-print(f" Output Destination              : {OUTPUT_FILE}")
-print("=" * 65)
+    print(f"  {intent['tag']:<34}: {len(intent['patterns'])} patterns")
+print(f"Total: {total_samples} | Output: {OUTPUT_FILE}")
