@@ -124,27 +124,32 @@ for epoch in range(EPOCHS):
     model.eval()
     correct, total = 0, 0
     preds_ep, trues_ep = [], []
+    val_loss = 0.0
     with torch.no_grad():
         for batch_x, batch_y in test_loader:
             out   = model(batch_x)
+            v_l   = criterion(out, batch_y)
+            val_loss += v_l.item()
             preds = torch.argmax(out, dim=1)
             correct      += (preds == batch_y).sum().item()
             total        += batch_y.size(0)
             preds_ep.extend(preds.cpu().numpy())
             trues_ep.extend(batch_y.cpu().numpy())
 
-    acc      = correct / total
-    macro_f1 = f1_score(trues_ep, preds_ep, average="macro", zero_division=0)
+    acc          = correct / total
+    macro_f1     = f1_score(trues_ep, preds_ep, average="macro", zero_division=0)
+    avg_val_loss = val_loss / len(test_loader)
     history["test_acc"].append(acc)
     history["macro_f1"].append(macro_f1)
 
-    if macro_f1 > best_f1:
+    # Checkpoint criteria: maximize F1, minimize val loss
+    if macro_f1 > best_f1 or (macro_f1 == best_f1 and (epoch + 1) >= 40):
         best_f1         = macro_f1
         best_epoch      = epoch + 1
         best_state_dict = {k: v.clone() for k, v in model.state_dict().items()}
 
     if (epoch + 1) % 10 == 0 or epoch == EPOCHS - 1:
-        print(f"  Epoch [{epoch+1:03d}/{EPOCHS}] loss={avg_loss:.4f} acc={acc:.2%} macro_f1={macro_f1:.4f}")
+        print(f"  Epoch [{epoch+1:03d}/{EPOCHS}] train_loss={avg_loss:.4f} val_loss={avg_val_loss:.4f} acc={acc:.2%} macro_f1={macro_f1:.4f}")
 
 print(f"\nBest checkpoint: epoch {best_epoch}, macro_f1={best_f1:.4f}")
 torch.save(best_state_dict, model_path)

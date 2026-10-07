@@ -2,13 +2,15 @@ import io
 import json
 import streamlit as st
 import speech_recognition as sr
+import soundfile as sf
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from sentence_transformers import SentenceTransformer
+from gtts import gTTS
 
 st.set_page_config(
-    page_title="ClauseCheck — Predatory Debt Auditor",
+    page_title="ClauseCheck — Voice-Enabled Predatory Debt Auditor",
     page_icon="🛡️",
     layout="centered"
 )
@@ -20,7 +22,7 @@ st.warning(
 )
 
 st.title("🛡️ ClauseCheck: Predatory Debt Auditor")
-st.caption("Voice-Enabled Compliance & Intent Classification for Digital Lending Agreements")
+st.caption("Voice-Enabled Compliance, Speech Recognition & Intent Classification for Credit Agreements")
 
 
 class ClauseCheckClassifier(nn.Module):
@@ -70,14 +72,31 @@ except Exception as e:
     st.stop()
 
 
-def audit_clause(text: str):
+def audit_clause_multi(text: str):
     emb          = embedder.encode([text], convert_to_numpy=True)
     tensor_input = torch.tensor(emb, dtype=torch.float32)
     with torch.no_grad():
         logits        = model(tensor_input)
-        probabilities = F.softmax(logits, dim=1)
-        confidence, pred_idx = torch.max(probabilities, dim=1)
-    return label_names[pred_idx.item()], confidence.item()
+        probabilities = F.softmax(logits, dim=1).squeeze(0)
+    
+    sorted_probs, indices = torch.sort(probabilities, descending=True)
+    results = [
+        (label_names[idx.item()], sorted_probs[i].item())
+        for i, idx in enumerate(indices)
+    ]
+    return results
+
+
+@st.cache_data(show_spinner=False)
+def synthesize_voice_verdict(text: str):
+    try:
+        tts = gTTS(text=text, lang="en", tld="co.in")
+        audio_fp = io.BytesIO()
+        tts.write_to_fp(audio_fp)
+        audio_fp.seek(0)
+        return audio_fp.getvalue()
+    except Exception:
+        return None
 
 
 with st.sidebar:
@@ -127,10 +146,24 @@ if audio_file is not None:
     try:
         audio_bytes  = audio_file.read()
         audio_buffer = io.BytesIO(audio_bytes)
-        with sr.AudioFile(audio_buffer) as source:
-            audio_data = recognizer.record(source)
-            query_text = recognizer.recognize_google(audio_data)
-            source_type = "Microphone Voice Stream"
+        
+        # Robust PCM conversion using soundfile
+        try:
+            audio_data_np, sample_rate = sf.read(audio_buffer)
+            wav_buffer = io.BytesIO()
+            sf.write(wav_buffer, audio_data_np, sample_rate, format='WAV', subtype='PCM_16')
+            wav_buffer.seek(0)
+            with sr.AudioFile(wav_buffer) as source:
+                recorded_audio = recognizer.record(source)
+                query_text = recognizer.recognize_google(recorded_audio)
+                source_type = "Microphone Voice Stream"
+        except Exception:
+            audio_buffer.seek(0)
+            with sr.AudioFile(audio_buffer) as source:
+                recorded_audio = recognizer.record(source)
+                query_text = recognizer.recognize_google(recorded_audio)
+                source_type = "Microphone Voice Stream"
+
     except sr.UnknownValueError:
         st.error("Audio was unclear or below threshold volume. Please speak closer to the microphone and try again.")
     except sr.RequestError as e:
@@ -148,25 +181,32 @@ if query_text:
     st.markdown(f"**Ingested Input ({source_type}):**")
     st.info(f'"{query_text}"')
 
-    tag, confidence = audit_clause(query_text)
+    ranked_results = audit_clause_multi(query_text)
+    primary_tag, primary_conf = ranked_results[0]
+    secondary_tag, secondary_conf = ranked_results[1]
 
     col1, col2 = st.columns(2)
     with col1:
-        st.metric("Detected Risk Vector", tag)
+        st.metric("Primary Risk Vector", primary_tag)
     with col2:
-        st.metric("Classifier Confidence", f"{confidence:.2%}")
+        st.metric("Primary Confidence", f"{primary_conf:.2%}")
+
+    if secondary_conf >= 0.15 and secondary_tag != "out_of_scope":
+        st.caption(f"⚡ *Secondary Correlated Vector Detected:* **{secondary_tag}** ({secondary_conf:.1%})")
 
     st.markdown("### 🔍 Regulatory Compliance Audit")
 
-    CONFIDENCE_THRESHOLD = 0.45
-    card = audit_cards.get(tag, {})
+    CONFIDENCE_THRESHOLD = 0.40
+    card = audit_cards.get(primary_tag, {})
 
-    if confidence < CONFIDENCE_THRESHOLD or tag == "out_of_scope":
-        st.warning(
+    if primary_conf < CONFIDENCE_THRESHOLD or primary_tag == "out_of_scope":
+        abstain_msg = (
             "⚠️ **NON-CREDIT / OUT-OF-DOMAIN QUERY:** The submitted input does not correspond to digital lending "
             "regulations, debt collection conduct, or credit card agreements under RBI guidelines. "
             "The system abstains from generating a compliance card."
         )
+        st.warning(abstain_msg)
+        speech_text = "The submitted question is outside digital lending and credit regulations. No violation detected."
     else:
         st.error(f"🚨 **{card.get('audit_title', 'VIOLATION DETECTED')}**")
         st.markdown(f"""
@@ -179,3 +219,18 @@ if query_text:
         **Mandated Borrower Remedy:**  
         > {card.get('statutory_remedy')}
         """)
+        speech_text = f"Audit Verdict: {card.get('audit_verdict')}. Remedy: {card.get('statutory_remedy')}"
+
+    # TTS Voice Response Playback
+    st.markdown("#### 🔊 Audio Verdict (Voice Playback)")
+    tts_bytes = synthesize_voice_verdict(speech_text)
+    if tts_bytes:
+        st.audio(tts_bytes, format="audio/mp3")
+    else:
+        st.caption("Voice playback unavailable.")
+
+    # Probability Distribution Visualization
+    with st.expander("📊 View Complete Multi-Class Confidence Distribution"):
+        for tag, prob in ranked_results:
+            st.write(f"**{tag}**: {prob:.2%}")
+            st.progress(min(max(prob, 0.0), 1.0))

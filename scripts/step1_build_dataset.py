@@ -63,12 +63,28 @@ dataset = {
                 "undisclosed loan onboarding charges",
                 "penal interest rate compounding",
                 "deducted processing fee upfront",
-                "annual percentage rate transparency"
+                "annual percentage rate transparency",
+                # Augmented ASR, colloquial & speech error patterns:
+                "prosessing feee deducted befor desbursel",
+                "they took cut money upfront and gave less loan amount in bank",
+                "hidden charge deducted from loan amount",
+                "upfront processing deduction without kfs",
+                "why high apr rate charged in loan agreement",
+                "platform charges cut before disbursal",
+                "undisclosed insurance and platform fees deducted",
+                "apr transparency in instant loan contract",
+                "administrative charges deducted from sanctioned principal",
+                "sanction letter amount different from bank transfer",
+                "undisclosed loan fee deduction",
+                "excess apr hidden charges in digital loan",
+                "loan app deducted 1500 upfront",
+                "annualized percentage rate not shown in agreement",
+                "kfs not provided before loan disbursement"
             ]
         },
         {
             "tag": "coercive_device_permissions",
-            "regulatory_anchor": "RBI Digital Lending Norms \u2014 Restriction on Mobile Device Data Access",
+            "regulatory_anchor": "RBI Digital Lending Norms — Restriction on Mobile Device Data Access",
             "audit_title": "Unlawful Access to Personal Contacts & Phone Storage",
             "audit_verdict": "CRITICAL VIOLATION: Prohibited Data Harvesting Vector",
             "explanation": "RBI directives explicitly prohibit Digital Lending Apps (DLAs) and Lending Service Providers (LSPs) from accessing borrower contact books, media galleries, call records, and local file storage. Access is limited strictly to one-time camera, mic, or location purely for KYC onboarding.",
@@ -123,7 +139,21 @@ dataset = {
                 "delete my data from loan app",
                 "rbi ban on contact access",
                 "microphone and camera access loan app",
-                "revoke lending app permissions"
+                "revoke lending app permissions",
+                # Augmented ASR, colloquial & speech error patterns:
+                "lone aap wants to see my photo gallary and cantact lisst",
+                "why loan app wanting full mobile phone contact book access yaar",
+                "loan app asking for photo gallery and contacts list permission",
+                "access phone contacts and photo gallery",
+                "app asks for contacts and media files",
+                "lending app stealing contact numbers",
+                "reading phonebook and call logs",
+                "coercive device permissions loan app",
+                "contact list scraping digital lending",
+                "access to camera gallery contact book",
+                "harvesting personal mobile data loan app",
+                "unlawful mobile permission credit app",
+                "loan app insists on phone contacts access"
             ]
         },
         {
@@ -183,7 +213,20 @@ dataset = {
                 "report recovery harassment rbi",
                 "collection agency blackmailing contacts",
                 "illegal debt recovery tactics",
-                "agent seizing vehicle without notice"
+                "agent seizing vehicle without notice",
+                # Augmented ASR, colloquial & speech error patterns:
+                "recovry agent thretening arresst at 10 pm",
+                "Recovery goons are doing hafta vasooli calling at night 11 pm",
+                "recovery guy abusive call at night",
+                "collection agent shouting and threatening police arrest",
+                "loan recovery agent calling my relatives",
+                "recovery agent abuse and harassment",
+                "debt collector threatening arrest and calling family",
+                "recovery agent intimidation and abusive language",
+                "hafta vasooli by loan recovery agents",
+                "illegal recovery agent calling late hours",
+                "recovery agent visiting home without ID card",
+                "threatening jail arrest for delayed loan payment"
             ]
         },
         {
@@ -191,7 +234,7 @@ dataset = {
             "regulatory_anchor": "RBI Mandated Look-up / Cooling-off Period for Digital Loans",
             "audit_title": "Denial of Statutory Loan Exit Rights",
             "audit_verdict": "REGULATORY NON-COMPLIANCE: Cooling-Off Provision Breach",
-            "explanation": "Borrowers have an explicit statutory right to exit a digital loan without paying foreclosure penalties by repaying the principal plus proportionate APR within the look-up period (minimum 3 days for tenures \u2265 7 days; 1 day for shorter tenures).",
+            "explanation": "Borrowers have an explicit statutory right to exit a digital loan without paying foreclosure penalties by repaying the principal plus proportionate APR within the look-up period (minimum 3 days for tenures ≥ 7 days; 1 day for shorter tenures).",
             "statutory_remedy": "Submit written notice to the lender invoking the statutory look-up period under RBI Digital Lending Guidelines and tender the principal plus proportionate APR.",
             "patterns": [
                 "can i cancel my digital loan after funds have been disbursed",
@@ -243,16 +286,29 @@ dataset = {
                 "how to cancel disbursed loan",
                 "proportionate apr loan cancellation",
                 "loan app refusal to cancel",
-                "rbi look up period rules"
+                "rbi look up period rules",
+                # Augmented ASR, colloquial & speech error patterns:
+                "culing of peryod look up return lone without panelty",
+                "I took loan by mistake yesterday want to return back full money without fine",
+                "cooling off look up",
+                "return loan in 3 days without penalty",
+                "cancel loan within lookup period",
+                "surrender digital loan within cooling period",
+                "exit digital loan without foreclosure charges",
+                "cooling off cancellation right under rbi",
+                "return principal and proportionate apr within look up period",
+                "can i cancel instant loan within 3 days",
+                "cooling off period for personal loan",
+                "look up window to return loan without penalty"
             ]
         },
         {
             "tag": "credit_card_unilateral_terms",
-            "regulatory_anchor": "RBI Master Direction \u2013 Credit Card and Debit Card Issuance and Conduct Directions",
+            "regulatory_anchor": "RBI Master Direction – Credit Card and Debit Card Issuance and Conduct Directions",
             "audit_title": "Unsolicited Upgrades, Arbitrary Limits & Revolving Traps",
             "audit_verdict": "HIGH RISK: Violation of Credit Card Governance Norms",
             "explanation": "Card issuers are prohibited from unilaterally enhancing credit limits, issuing unsolicited cards, or converting purchases to EMIs without explicit written consent. Requests for card closure must be completed within 7 working days, failing which the issuer incurs statutory penalty fines.",
-            "statutory_remedy": "If a card is issued without consent or closure is delayed beyond 7 days, demand compensation of \u20b9500 per day of delay directly from the bank.",
+            "statutory_remedy": "If a card is issued without consent or closure is delayed beyond 7 days, demand compensation of ₹500 per day of delay directly from the bank.",
             "patterns": [
                 "can the bank increase my credit card limit without my explicit consent",
                 "why is the interest on credit card revolving balances so high",
@@ -303,12 +359,24 @@ dataset = {
                 "convert transaction to emi without permission",
                 "dispute unauthorized credit card transaction",
                 "compensation delayed credit card closure",
-                "overlimit charge without prior consent"
+                "overlimit charge without prior consent",
+                # Augmented ASR, colloquial & speech error patterns:
+                "kredit kard clozure delayed 15 days",
+                "Credit card limit auto increased by bank without asking me",
+                "credit card limit increased without consent",
+                "bank not closing credit card within 7 days",
+                "unsolicited credit card sent to my address",
+                "arbitrary credit card limit increase",
+                "500 rupees per day penalty for credit card closure delay",
+                "credit card revolving interest rate calculation",
+                "bank converted purchase to emi without asking",
+                "credit card annual fee on unactivated card",
+                "credit card limit upgrade without permission"
             ]
         },
         {
             "tag": "out_of_scope",
-            "regulatory_anchor": "N/A \u2014 Out of Domain Intent",
+            "regulatory_anchor": "N/A — Out of Domain Intent",
             "audit_title": "Out-of-Domain Non-Compliance Query",
             "audit_verdict": "ABSTAIN: Query Outside Digital Lending & Consumer Debt Scope",
             "explanation": "ClauseCheck is trained exclusively on Indian consumer credit agreements, RBI digital lending guidelines, and credit card terms. It abstains from general trivia, coding tasks, or generic conversation.",
@@ -363,7 +431,15 @@ dataset = {
                 "who wrote the odyssey",
                 "weather forecast tomorrow morning",
                 "debug this sql query",
-                "recommend best headphones"
+                "recommend best headphones",
+                # Augmented out-of-scope & general noise:
+                "hello hey hi there",
+                "good morning how are you",
+                "123456 999 ??? !!!",
+                "test test test 123",
+                "can you tell me who created the universe",
+                "how to play chess opening moves",
+                "what is the meaning of life"
             ]
         }
     ]
